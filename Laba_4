@@ -1,0 +1,68 @@
+let world_xPos = 0
+
+let player = {
+  xPos: 350,
+  yPos: 550,
+  speed: 8
+}
+
+function drawPlayer()
+{
+  fill("yellow")
+  circle(player.xPos, player.yPos, 60)
+}
+
+function drawPoints(x, c)
+{
+  fill(c)
+  circle(x, 650, 10)
+}
+
+function setup()
+{
+  createCanvas(700, 700)
+}
+
+function draw()
+{
+  background(0)
+  
+  drawPlayer()
+  
+  move()
+  
+  drawPoints(world_xPos - 700, "red")
+  drawPoints(world_xPos - 350, "orange")
+  drawPoints(world_xPos + 0, "yellow")
+  drawPoints(world_xPos + 350, "green")
+  drawPoints(world_xPos + 700, "cyan")
+  drawPoints(world_xPos + 1050, "blue")
+  drawPoints(world_xPos + 1400, "purple")
+}
+
+function move()
+{
+  if(player.xPos <= 50 && keyIsDown(65))
+  {
+    world_xPos += player.speed
+  }
+  
+  else if(player.xPos >= 650 && keyIsDown(68))
+  {
+    world_xPos -= player.speed
+  }
+  
+  else
+  {
+    if(keyIsDown(65)) // Движение влево
+      {   
+        player.xPos = player.xPos - player.speed
+      }
+
+
+      if(keyIsDown(68)) // Движение вправо
+      {    
+        player.xPos = player.xPos + player.speed
+      }
+  }
+}
